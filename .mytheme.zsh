@@ -20,10 +20,17 @@ zstyle ':vcs_info:git:*' unstagedstr "↓"
     local ahead behind
     local tracked stashed
     local -a gitstatus
+<<<<<<< Updated upstream
     ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)
     gitstatus+=( "%F{40}↑${ahead}%f" )
     behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
     gitstatus+=( "%F{160}↓${behind}%f" )
+=======
+    ahead=$(git rev-list @{upstream}..HEAD 2>/dev/null | wc -l)
+    (($ahead)) && gitstatus+=( "%F{40}↑$ahead%f" )
+    behind=$(git rev-list HEAD..@{upstream} 2>/dev/null | wc -l)
+    (($behind)) && gitstatus+=( "%F{160}↓$behind%f" )
+>>>>>>> Stashed changes
     stashed=$(git stash list 2>/dev/null | wc -l)
     (( $stashed )) && gitstatus+=( "%{%F{244}%}#${stashed}%{%f%}" )
     tracked=$(git status --porcelain | grep '^??' | wc -l)
@@ -38,6 +45,8 @@ _update_vcs_info_msg() {
     local vcs_info_bold
     local cbranch
     local ccommit
+    local -a stats
+    local -a stash
     LANG=en_US.UTF-8 vcs_info
     vcs_info_bold=false
     case $vcs_info_msg_0_ in
@@ -60,8 +69,6 @@ _update_vcs_info_msg() {
         prom="%T"
 	PROMPT="%~# "
     else
-	local -a stats
-	local -a stash
 	local temp
 	temp=${vcs_info_msg_0_}
 	for ((n=0;n<5;n++)); do
