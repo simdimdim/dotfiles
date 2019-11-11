@@ -21,9 +21,9 @@ zstyle ':vcs_info:git:*' unstagedstr "↓"
     local tracked stashed
     local -a gitstatus
     ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)
-    gitstatus+="%F{40}↑${ahead}%f"
+    gitstatus+=( "%F{40}↑${ahead}%f" )
     behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
-    (( $behind )) && gitstatus+="%F{160}↓${behind}%f"
+    gitstatus+=( "%F{160}↓${behind}%f" )
     stashed=$(git stash list 2>/dev/null | wc -l)
     (( $stashed )) && gitstatus+=( "%{%F{244}%}#${stashed}%{%f%}" )
     tracked=$(git status --porcelain | grep '^??' | wc -l)
