@@ -20,21 +20,15 @@ zstyle ':vcs_info:git:*' unstagedstr "↓"
     local ahead behind
     local tracked stashed
     local -a gitstatus
-<<<<<<< Updated upstream
-    ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)
-    gitstatus+=( "%F{40}↑${ahead}%f" )
-    behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
-    gitstatus+=( "%F{160}↓${behind}%f" )
-=======
     ahead=$(git rev-list @{upstream}..HEAD 2>/dev/null | wc -l)
     (($ahead)) && gitstatus+=( "%F{40}↑$ahead%f" )
     behind=$(git rev-list HEAD..@{upstream} 2>/dev/null | wc -l)
     (($behind)) && gitstatus+=( "%F{160}↓$behind%f" )
->>>>>>> Stashed changes
     stashed=$(git stash list 2>/dev/null | wc -l)
     (( $stashed )) && gitstatus+=( "%{%F{244}%}#${stashed}%{%f%}" )
-    tracked=$(git status --porcelain | grep '^??' | wc -l)
+    tracked=$(git status --porcelain | grep '^.. ' | wc -l)
     (( $tracked )) && gitstatus+=( "%{%F{52}%}?${tracked}%{%f%}" )
+#    && hook_com[staged]+='S'
     gitstatus+=( "" )
     hook_com[misc]+=${(j: :)gitstatus}
 
@@ -49,6 +43,8 @@ _update_vcs_info_msg() {
     local -a stash
     LANG=en_US.UTF-8 vcs_info
     vcs_info_bold=false
+    cbranch=238
+    ccommit=236
     case $vcs_info_msg_0_ in
         *'↑'*'↓'*)
             cbranch=yellow
@@ -57,15 +53,15 @@ _update_vcs_info_msg() {
             cbranch=green ;;
         *'↓'*)
             vcs_info_bold=true
-            cbranch=red ;;
-	*'#'*'?'*)
-	    ccommit=25 ;;
+            cbranch=196 ;;
 	*'#'*)
 	    ccommit=245 ;;
 	*'?'*)
 	    ccommit=52 ;;
+	*'#'*'?'*)
+	    ccommit=25 ;;
     esac
-    if [[ -z ${vcs_info_msg_0_} ]]; then
+    if [[ -z ${vcs_info_msg_2_} ]]; then
         prom="%T"
 	PROMPT="%~# "
     else
@@ -84,13 +80,15 @@ _update_vcs_info_msg() {
 		temp="${temp#* }"
 	    fi
 	done
-	prom="${stash} %F{$ccommit}${vcs_info_msg_1_}%f %F{$cbranch}${vcs_info_msg_2_}%f"
         if $vcs_info_bold; then
-	    prom='%B'${prom}'%b'
-        fi
+	    prom="${stash} %F{$ccommit}${vcs_info_msg_1_}%f %B%F{$cbranch}${vcs_info_msg_2_}%f%b"
+	else
+	    prom="${stash} %F{$ccommit}${vcs_info_msg_1_}%f %F{$cbranch}${vcs_info_msg_2_}%f"
+	fi
         PROMPT="%~${(j::)stats}# "
     fi
     RPROMPT="$prom"
+    echo $prom
 }
 
 add-zsh-hook precmd _update_vcs_info_msg
