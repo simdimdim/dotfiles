@@ -53,7 +53,7 @@ _update_vcs_info_msg() {
             cbranch=green ;;
         *'↓'*)
             vcs_info_bold=true
-            cbranch=196 ;;
+            cbranch=red ;;
 	*'#'*)
 	    ccommit=245 ;;
 	*'?'*)
@@ -88,7 +88,7 @@ _update_vcs_info_msg() {
         PROMPT="%~${(j::)stats}# "
     fi
     RPROMPT="$prom"
-    echo $prom
+#    echo $prom
 }
 
 add-zsh-hook precmd _update_vcs_info_msg
