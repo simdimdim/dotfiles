@@ -26,6 +26,8 @@ alias ms.='f() { if [ -n "$1" ]; then a=($(du -sh $1/.[^.]* | sort -hr)); printf
 alias ms='f() { if [ -n "$1" ]; then a=($(du -sh "$@" | sort -hr)); printf "%s\t%s\n" "${a[@]}"; fi }; f'
 alias wget='wget -c'
 
+alias tmx='~/scripts/tmux_default.sh'
+
 alias activate='conda activate tf'
 alias deactivate='conda deactivate'
 alias sysupdate='~/scripts/update'
@@ -35,6 +37,7 @@ alias cargoall='cargo update && cargo build -j6; cargo build --release -j6'
 
 alias zshconfig='nano ~/.zshrc'
 alias zshconfigtheme='nano ~/.dotfiles/.mytheme.zsh'
+alias zshconfigsource='source ~/.zshrc'
 alias sxconfig='nano ~/.config/sxhkd/sxhkdrc'
 alias bspconfig='nano ~/.config/bspwm/bspwmrc'
 

@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --bg-max --randomize --no-fehbg ~/.background/* --image-bg \#000000
+feh --no-fehbg --bg-scale '/home/thedoctor/.background/'
