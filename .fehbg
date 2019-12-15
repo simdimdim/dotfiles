@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --no-fehbg --bg-scale '/home/thedoctor/.background/'
+feh --no-fehbg --bg-scale --randomize '/home/thedoctor/.background/'
