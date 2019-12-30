@@ -1,12 +1,8 @@
 export PATH="$HOME/.cargo/bin:$PATH"
 export PYTHONSTARTUP=~/.pythonrc
-
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    ssh-agent > "$XDG_RUNTIME_DIR/ssh-agent.env"
-fi
-if [[ ! "$SSH_AUTH_SOCK" ]]; then
-    eval "$(<"$XDG_RUNTIME_DIR/ssh-agent.env")"
-fi
+export GPG_TTY=$(tty)
+export _JAVA_AWT_WM_NONREPARENTING=1
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 alias re='sudo $(fc -ln -1)'
 alias ls='ls --group-directories-first --color=auto -v'
@@ -14,6 +10,7 @@ alias ll='ls -lah --group-directories-first --color=auto -v'
 alias ..='cd ..'
 alias snano='sudo nano'
 alias ss='sudo systemctl'
+alias kaf='killall firefox'
 alias ssree='sudo systemctl reenable'
 alias ssr='sudo systemctl restart'
 alias sss='sudo systemctl status'
@@ -35,11 +32,11 @@ alias nb='eval "$(conda shell.bash hook)";conda activate tf;jupyter notebook --n
 alias nbb='eval "$(conda shell.bash hook)";conda activate tf;jupyter notebook --notebook-dir="~/DL/Win/Coding/Notebooks" &'
 alias cargoall='cargo update && cargo build -j6; cargo build --release -j6'
 
-alias zshconfig='nano ~/.zshrc'
-alias zshconfigtheme='nano ~/.dotfiles/.mytheme.zsh'
-alias zshconfigsource='source ~/.zshrc'
-alias sxconfig='nano ~/.config/sxhkd/sxhkdrc'
-alias bspconfig='nano ~/.config/bspwm/bspwmrc'
+alias cfc='nano ~/.zshrc'
+alias cft='nano ~/.dotfiles/.mytheme.zsh'
+alias cf='source ~/.zshrc'
+alias cfs='nano ~/.config/sxhkd/sxhkdrc'
+alias cfb='nano ~/.config/bspwm/bspwmrc'
 
-export _JAVA_AWT_WM_NONREPARENTING=1
-export GPG_TTY=$(tty)
+export LIBTORCH=/home/thedoctor/libtorch
+export LD_LIBRARY_PATH=${LIBTORCH}/lib:$LD_LIBRARY_PATH
