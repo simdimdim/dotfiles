@@ -1,0 +1,1 @@
+sudo du -ch -d 7 -x --exclude='/media/*' -t 300M / | sort -h 

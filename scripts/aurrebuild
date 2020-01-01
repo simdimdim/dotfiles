@@ -1,0 +1,9 @@
+#!/bin/bash
+yay -Qm | awk '{print $1}' | yay --rebuild --answerclean=All --answerdiff=None --answeredit=None - 
+
+# sorted by date:
+# yay -Qm | awk '{print $1}' | yay -Qi - | grep -f <(echo 'Name\nBuild Date') - | awk -F: '{print $2}' | paste - - |sort -r -k2 | awk -F '\t' 'BEGIN { OFS=FS } { print $2 $1 }' 
+
+# with cutoff:
+# yay -Qm | awk '{print $1}' | yay -Qi - | grep -f <(echo 'Name\nBuild Date') - | awk -F: '{print $2}' | paste - - |sort -r -k2 | awk '{print $1}' | awk '/^reflector-timer/{f=1}f' | yay -S --rebuild --answerclean=All --answerdiff=None --answeredit=None -
+
