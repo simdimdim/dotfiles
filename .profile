@@ -8,7 +8,7 @@ alias re='sudo $(fc -ln -1)'
 alias ls='ls --group-directories-first --color=auto -v'
 alias ll='ls -lah --group-directories-first --color=auto -v'
 alias ..='cd ..'
-alias kaf='killall firefox'
+alias kkf='killall firefox'
 alias journalctl='journalctl -e'
 alias snano='sudo nano'
 alias ss='sudo systemctl'
@@ -24,6 +24,7 @@ alias space='watch -n 1 df -h'
 alias ms.='f() { if [ -n "$1" ]; then a=($(du -sh $1/.[^.]* | sort -hr)); printf "%s\t%s\n" "${a[@]}"; fi }; f'
 alias ms='f() { if [ -n "$1" ]; then a=($(du -sh "$@" | sort -hr)); printf "%s\t%s\n" "${a[@]}"; fi }; f'
 alias wget='wget -c'
+alias nv='yay --rebuild nvidia-'
 
 alias tmx='~/scripts/tmux_default.sh'
 
@@ -39,6 +40,9 @@ alias cft='nano ~/.dotfiles/.mytheme.zsh'
 alias cf='source ~/.zshrc'
 alias cfs='nano ~/.config/sxhkd/sxhkdrc'
 alias cfb='nano ~/.config/bspwm/bspwmrc'
+alias cfl='nano ~/.config/bspwm/launch.sh'
+alias cfm='nano ~/.config/mpv/input.conf'
+alias cfn='sudo nano /etc/nginx/nginx.conf'
 
 export LIBTORCH=/home/thedoctor/libtorch
 export LD_LIBRARY_PATH=${LIBTORCH}/lib:$LD_LIBRARY_PATH

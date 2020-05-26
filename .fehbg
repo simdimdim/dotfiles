@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --no-fehbg --bg-scale --randomize '/home/thedoctor/.background/'
+feh --no-fehbg --bg-fill '/home/thedoctor/.background/fantasy-art-artwork-fan-art-science-fiction-concept-art-dark-stars-space-digital-art-1434395.jpg'
