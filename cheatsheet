@@ -1,0 +1,9 @@
+#[CLI benchmarking tools]
+hyperfine
+perf
+time
+
+#[mirrorlist]
+/etc/pacman.d/mirrorlist
+reflector - for easier fetching mirrors
+rankmirrors - for reordering a mirrorlist
