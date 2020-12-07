@@ -1,0 +1,16 @@
+#Services 
+systemd-timesyncd - time/date sync service
+dnsmasq - dns/dhcp server
+radvd - ipv6 Router Advertisement Daemon
+dhcpcd
+
+# Environemnt
+miniconda3 - python env manager
+
+bspwm - wm
+sxhkd - hotkeymanager
+tint2 - bar
+
+# Apps
+code-oss - IDE
+

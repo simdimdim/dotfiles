@@ -1,0 +1,2 @@
+sudo mount /dev/sdd2 /media/Data
+sudo mount /dev/nvme0n1p4 /media/E

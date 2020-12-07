@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# tar cpf - / --one-file-system | pbzip2 -p5 > backup.tar.bz2
+tar cpf - / --one-file-system | pbzip2 -p5 > ./backup.tar.bz2

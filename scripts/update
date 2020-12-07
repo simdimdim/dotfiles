@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# if [ 0 -ne $(yay -Qu linux nvidia | wc -l) ]; then
+if [ 0 -ne $(yay -Qu linux nvidia-beta | wc -l) ]; then
+    echo "Base sys update"
+    yay -Syu --nodiffmenu --noconfirm
+    yay -Syu nvidia-utils-beta nvidia-beta lib32-nvidia-utils-beta lib32-opencl-nvidia-beta opencl-nvidia-beta --rebuildall --answerclean=All --nodiffmenu --noconfirm
+    if mountpoint -q /media/Other ; then
+	echo "Already Mounted"
+    else
+	sudo mount /media/Other
+    fi
+    yay --sysroot /media/Other -Syu --noconfirm
+    yay --sysroot /media/Other -Syu nvidia-utils-beta nvidia-beta lib32-nvidia-utils-beta lib32-opencl-nvidia-beta opencl-nvidia-beta --noredownload --rebuildall --answerclean=All --nodiffmenu --noconfirm
+    echo "Mount and update."
+    while [ -f /var/lib/pacman/db.lck ]
+    do
+        sleep 3
+    done
+#    sudo umount -R /mnt
+else
+    echo "Default"
+    yay --color=always -Syu --noconfirm
+fi
+
+# don't need this anymore, I can just:
+#sudo chroot /mnt /bin/bash
+
+read -n1 -rsp $'Press any key to continue...\n' _
+

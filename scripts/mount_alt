@@ -1,0 +1,13 @@
+if ! grep -qs '/dev/mapper/sil_cebgaideaadfp4 /media/Other' /proc/mounts; then
+    sudo mount /dev/mapper/sil_cebgaideaadfp4 /media/Other
+    sudo mount -t proc proc /media/Other/proc
+    sudo mount -t sysfs sys /media/Other/sys
+    sudo mount -o bind /dev /media/Other/dev
+fi
+yay --sysroot /media/Other -Syu nvidia-full-beta-all --rebuild
+#yay --sysroot /media/Other -Syu
+#sudo umount -R /media/Other
+
+# don't need this anymore, I can just:
+#sudo chroot /mnt /bin/bash
+
