@@ -40,3 +40,9 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+
+
+
+batdiff() {
+    git diff --name-only --diff-filter=d | xargs bat --diff
+}

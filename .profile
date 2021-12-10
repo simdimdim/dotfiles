@@ -1,66 +1,107 @@
-export PATH="$HOME/.cargo/bin:$PATH"
-export PYTHONSTARTUP=~/.pythonrc
-export GPG_TTY=$(tty)
-export _JAVA_AWT_WM_NONREPARENTING=1
+export LD_LIBRARY_PATH=${LIBTORCH}/lib:$LD_LIBRARY_PATH
+export LIBTORCH=/home/thedoctor/libtorch
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+export GPG_TTY=$(tty)
+export PATH="$HOME/.cargo/bin:$PATH"
+export PYTHONSTARTUP="$HOME/.pythonrc"
+export EDITOR=nano
+export _JAVA_AWT_WM_NONREPARENTING=1
 
-alias re='sudo $(fc -ln -1)'
+alias re='eval "sudo $(fc -ln -1)"'
 alias ls='ls --group-directories-first --color=auto -v'
 alias ll='ls -lah --group-directories-first --color=auto -v'
 alias ..='cd ..'
-alias game='cd ~/Coding/CA02'
+#alias yay='paru'
+alias tuxiv='tuxi -u youtube'
+alias tuxie='tuxi etymology'
+alias web='cd /srv/http/html'
+alias game='cd ~/Coding/CB02'
+alias g1='cd ~/Coding/CB01'
+alias g2='cd ~/Coding/BB02'
 alias g3='cd ~/Coding/CA03'
 alias g4='cd ~/Coding/CA04'
-alias g5='cd ~/Coding/Docs/Rex'
+alias g5='cd ~/Coding/CB00'
+alias g6='cd ~/Coding/CA02'
+alias rex='cd ~/Coding/Docs/Rex'
 alias kkf='killall /usr/lib/firefox/firefox'
 alias kkc='killall code-oss'
 alias sort='sort -h'
 alias du='du -h'
 alias journalctl='journalctl -e'
+alias tree='tree --filelimit=20'
 alias snano='sudo nano'
+alias vdiff='sudo vimdiff'
+alias htop='sudo htop'
 alias ss='sudo systemctl'
 alias ssree='sudo systemctl reenable'
 alias ssr='sudo systemctl restart'
-alias sss='sudo systemctl status'
+alias sss='systemctl status'
 alias ssd='sudo systemctl daemon-reload'
+alias ssf='sudo systemctl --failed'
 alias ssz='sudo systemctl suspend'
 alias ssre='sudo systemctl reboot'
 alias sse='sudo systemctl edit --full'
+alias ssk='sudo systemctl kexec'
 alias ssa='systemd-analyze'
+alias ssu='systemctl --user'
+alias ssuree='systemctl --user reenable'
+alias ssur='systemctl --user restart'
+alias ssus='systemctl --user status'
+alias ssud='systemctl --user daemon-reload'
+alias ssuf='systemctl --user --failed'
+alias ssue='systemctl --user edit --full'
+alias repkg='sudo repkg'
 alias feh='feh -Z -. -x -R 1'
 alias senso='watch -n 1 " sensors -A | grep \"temp\\|fan1\\|Core \" | grep -v coretemp "  '
 alias space='watch -n 1 df -h'
 alias ms.='f() { if [ -n "$1" ]; then a=($(du -sh $1/.[^.]* | sort -hr)); printf "%s\t%s\n" "${a[@]}"; fi }; f'
-alias ms='f() { if [ -n "$1" ]; then a=($(du -sh "$@" | sort -hr)); printf "%s\t%s\n" "${a[@]}"; fi }; f'
+alias ms='f() { if [ -n "$1" ]; then a=($(du -sh "$@" | sort -hr) ); printf "%s\t%s\n" "${a[@]}" ; fi }; f'
 alias wget='wget -c'
 alias nv='yay -S --rebuild --answerclean=None nvidia-utils-beta nvidia-beta lib32-nvidia-utils-beta lib32-opencl-nvidia-beta opencl-nvidia-beta nvidia-settings-beta'
 alias gg='git clone https://aur.archlinux.org/'
 
+alias weather='curl sky.webionite.com/Sofia'
+alias google=googler
+alias diff=colordiff
+alias free='free -h'
 alias tmx='~/scripts/tmux_default.sh'
-
 alias activate='conda activate tf'
 alias deactivate='conda deactivate'
+
 alias sysupdate='~/scripts/update'
 alias nb='eval "$(conda shell.bash hook)";conda activate tf;jupyter notebook --notebook-dir="~/Coding" --no-browser --log-level WARN &;conda deactivate'
 alias nbb='eval "$(conda shell.bash hook)";conda activate tf;jupyter notebook --notebook-dir="~/DL/Win/Coding/Notebooks" &'
-# alias cargo='cargo -Zfeatures=itarget'
-alias cargoall='cargo update && cargo build -j6; cargo build --release -j6'
+
+alias cargoall='cargo update && cargo build && cargo build --release'
 alias cu='cargo upgrade && cargo update'
-alias cb='cargo build -Zfeatures=itarget -j6'
-alias ccc='cargo clean'
+alias cb='cargo build'
+alias cbr='cargo build --release'
+alias cch='cargo check'
+alias ca='cargo update && cargo build && cargo check'
+alias cca='cargo clean'
+alias ccd='cargo doc'
+alias ccr='cargo build --release && cargo check --release'
+alias cct='cargo test --lib'
+alias cccc='cargo sweep -i -r ~/Coding'
+alias ru='rustup update && g1 && cargo update && cb && ccd && cch && cbr && cccc'
+alias run='RUST_LOG=Warn cargo r --release'
+alias cr='cargo r --release'
+alias b='cargo b'
 
-alias aliases='grep alias ~/.profile'
+alias pagepal='~/Coding/CB01/target/release/main'
 
-alias cfc='nano ~/.zshrc'
+alias cfz='nano ~/.zshrc'
 alias cfp='nano ~/.profile'
+alias cfo='nano ~/.local/bin/open.sh'
 alias cft='nano ~/.dotfiles/.mytheme.zsh'
 alias cf='source ~/.zshrc'
 alias cfs='nano ~/.config/sxhkd/sxhkdrc'
 alias cfb='nano ~/.config/bspwm/bspwmrc'
 alias cfl='nano ~/.config/bspwm/launch.sh'
 alias cfm='nano ~/.config/mpv/input.conf'
-alias cfn='sudo nano /etc/nginx/nginx.conf'
-alias cfd='sudo nano /etc/dhcpcd.conf'
+alias pcf='sudo nano /etc/pacman.conf'
+alias cfn='cd /etc/nginx/sites-available'
+alias cfd='sudo nano /etc/dnsmasq'
+alias cfdh='sudo nano /etc/dhcpcd.conf'
 
-export LIBTORCH=/home/thedoctor/libtorch export LD_LIBRARY_PATH=${LIBTORCH}/lib:$LD_LIBRARY_PATH export EDITOR=nano export 
-
+#alias loop="echo \' \' | socat - /run/mpv/mpv.sock\

@@ -1,0 +1,67 @@
+#! /bin/sh
+
+export BSPWM_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/bspwm"
+# sxhkd &
+
+killall -q tint2
+while pgrep -x tint2 >/dev/null; do sleep 1; done
+tint2 &
+
+bspc monitor HDMI-0 -n 0 -d  溜  ﲵ 殺 戮  
+bspc monitor DVI-I-1 -n 1 -d 1 2 3
+bspc monitor 0 -s 1
+
+bspc config split_ratio		0.5
+bspc config border_width	0
+bspc config window_gap		0
+bspc config right_padding	42
+bspc config automatic_scheme first_child
+bspc config automatic_scheme longest_side
+
+bspc rule -a tint2 border=off manage=off layer=above state=floating follow=off
+bspc rule -a Atom desktop=^1 follow=off
+bspc rule -a code-oss desktop=^1 follow=off
+bspc rule -a firefox desktop=^2 follow=off
+bspc rule -a Microsoft-edge-dev desktop=^2 follow=off
+bspc rule -a Nemo desktop=^4 follow=on
+bspc rule -a Slack desktop=^5 follow=off
+bspc rule -a ViberPC desktop=^5 follow=off
+bspc rule -a Steam desktop=^6
+bspc rule -a factorio desktop=^7 fullscreen=on follow=on
+bspc rule -a IndustryIdle desktop=^7 fullscreen=on follow=on
+bspc rule -a starbound desktop=^7 fullscreen=on
+bspc rule -a discord desktop=^5 follow=off
+#bspc rule -a discord desktop=^10 follow=off
+bspc rule -a qemu-system-x86_64 desktop=^8 fullscreen=on follow=off
+bspc rule -a google-calendar-nativefier-e22938 desktop=^3 follow=on
+
+#Wine
+bspc rule -a explorer.exe desktop=^7 fullscreen=on follow=off
+# TERA
+bspc rule -a steam_app_212740 desktop=^7 fullscreen=on follow=on
+# Elite Dangerous:
+bspc rule -a steam_app_359320 desktop=^7 fullscreen=on follow=on
+# Warframe
+bspc rule -a steam_app_230410 desktop=^7 fullscreen=off follow=on state=floating
+# java and Mindustry
+bspc rule -a java desktop=^7 fullscreen=on follow=on
+#Starbound
+bspc rule -a starbound desktop=^7 fullscreen=on follow=on
+#Terraria
+bspc rule -a steam_app_105600 desktop=^9 fullscreen=on follow=on
+# Aven Colony
+bspc rule -a avencolony-win64-shipping.exe desktop=^7 fullscreen=on follow=on
+
+bspc rule -a main desktop=^11 follow=on
+# bspc rule -a AA02 desktop=^4 follow=off
+# bspc rule -a CA01 desktop=^3 follow=off
+
+# Load session
+# . "$BSPWM_CONFIG/restore.cfg"
+# if [ -e "$BSPWM_STATE" ] ; then
+# 	bspc wm --load-state "$BSPWM_STATE"
+# 	bspc wm --adopt-orphans
+# 	rm "$BSPWM_STATE"
+# fi
+
+# xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n 1)" $(xdo id -n tint2) &
